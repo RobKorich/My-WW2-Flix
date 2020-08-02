@@ -1,7 +1,9 @@
+//import modules to use in node.js
 const http = require('http'),
   fs = require('fs'),
   url = require('url');
 
+//create server and parse url
 http.createServer((request, response) => {
   let addr = request.url,
     q = url.parse(addr, true),
@@ -13,6 +15,7 @@ http.createServer((request, response) => {
     filePath = 'index.html';
   }
 
+  //add URL and timestamp to text file for all requests coming into server.js
   fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
     if (err) {
       console.log(err);
@@ -31,6 +34,6 @@ http.createServer((request, response) => {
     response.end();
 
   });
-  
+
 }).listen(8080);
 console.log('My test server is running on Port 8080.');

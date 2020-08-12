@@ -17,5 +17,153 @@
                 order to save data about their favorite movies.
             </p>
         </div>
+        <div>
+            <table class="doc-table" style="width: 1500px">
+                <thead>
+                    <tr>
+                        <th>Business Logic</th>
+                        <th>URL</th>
+                        <th>HTTP Method</th>
+                        <th>Request Body Data Format</th>
+                        <th>Response Body Data Format</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Get a list of all movies to user</td>
+                        <td>/movies</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>A JSON object holding data about all the movies</td>
+                    </tr>
+                    <tr>
+                        <td>Get data about a single movie by title to user</td>
+                        <td>/movies/[Title]</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>A JSON object holding data about a single movie which
+                            includes a title, description, genre, director information,
+                            and an image.
+                            Example: <p>
+                                {<br>
+                                    "Genre": {<br>
+                                        "Name": "Action",<br>
+                                        "Description": "Action film is a genre in which the protagonist or protagonists are thrust into a series of events that typically include violence, extended fighting, physical feats and frantic chases."<br>
+                                    },<br>
+                                    "Director": {<br>
+                                        "Name": "Richard Fleischer",<br>
+                                        "Bio": "American film director whose career spanned over four decades, beginning at the height of the Golden Age of Hollywood and lasting through the American New Wave",<br>
+                                        "Birth": "1916",<br>
+                                        "Death": "2006"<br>
+                                    },<br>
+                                    "Title": "Tora! Tora! Tora!",<br>
+                                    "Description": "1970 epic war film that dramatizes the Japanese attack on Pearl Harbor in 1941",<br>
+                                    "ImagePath": "ToraToraTora.png"<br>
+                                }<br>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Get data about movie genre to user</td>
+                        <td>/movies/genres/[Name]</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>A JSON object holding data about movie genres.
+                            Example: <p>
+                                {<br>
+                                    "Name": "Action",<br>
+                                    "Description": "Action film is a genre in which the protagonist or protagonists are thrust into a series of events that typically include violence, extended fighting, physical feats and frantic chases."<br>
+                                }<br>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Get data about movie director including name, bio, birth
+                            year, and death year.
+                        </td>
+                        <td>/movies/directors/[Name]</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>A JSON object holding data about movie director
+                            Example: <p>
+                                {<br>
+                                    "Name": "Richard Fleischer",<br>
+                                    "Bio": "American film director whose career spanned over four decades, beginning at the height of the Golden Age of Hollywood and lasting through the American New Wave",<br>
+                                    "Birth": "1916",<br>
+                                    "Death": "2006"<br>
+                                }<br>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Add data to register new user accounts</td>
+                        <td>/users</td>
+                        <td>POST</td>
+                        <td>A JSON object holding data about the user to add
+                            Example: <p>
+                                {<br>
+                                    "Username" : "RobKorich1234",<br>
+                                    "Password" : "password1234",<br>
+                                    "Email" : "RobKorich1234@gmail.com",<br>
+                                    "Birthday" : "12-09-1985"<br>  
+                                }<br>
+                        </td>
+                        <td>A JSON object holding data about the user that was added
+                            including an ID.
+                            Example: <p>
+                                {<br>
+                                    "_id" : 1234567890,<br>
+                                    "Username" : "RobKorich1234",<br>
+                                    "Password" : "password1234",<br>
+                                    "Email" : "RobKorich1234@gmail.com",<br>
+                                    "Birthday" : "12-09-1985"<br>   
+                                }<br>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Allow user to update their user info (username, password
+                            email, and DoB).
+                        </td>
+                        <td>/users/[Username]</td>
+                        <td>PUT</td>
+                        <td>A JSON object holding data of updated user information
+                            Example: <p>
+                                {<br>
+                                    "Username" : "RobKorich1234",<br>
+                                    "Password" : "password1234",<br>
+                                    "Email" : "RobKorich1234@gmail.com",<br>
+                                    "Birthday" : "12-09-1985"<br>   
+                                }<br>
+                            </p>
+                        </td>
+                        <td>A text message showing user's information has been updated
+                            successfully.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Allow user to add movies to their favorite's list</td>
+                        <td>/users/[Username]/favorites/[movieID]</td>
+                        <td>POST</td>
+                        <td>A JSON object holding data about the movie to add to the user's favorite's list</td>
+                        <td>A text message showing movie has been added to user's favorites</td>
+                    </tr>
+                    <tr>
+                        <td>Allow users to remove a movie from their favorite's list</td>
+                        <td>/users/[Username]/favorites/[movieID]</td>
+                        <td>DELETE</td>
+                        <td>None</td>
+                        <td>A text message showing movie was removed from user's favorite's list</td>
+                    </tr>
+                    <tr>
+                        <td>Allow users to deregister</td>
+                        <td>/users/[Username]</td>
+                        <td>DELETE</td>
+                        <td>None</td>
+                        <td>A text message showing user's account has been deleted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

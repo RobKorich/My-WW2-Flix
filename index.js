@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
 
-
+//not correct format like documentation...will fix later
 let ww2Movies = [
     {
         title: 'Tora! Tora! Tora!',
@@ -19,6 +19,7 @@ let ww2Movies = [
 app.use(morgan('common'));
 //invoke express static function (routes all requests for static files to their corresponding files within 'public' folder)
 app.use(express.static('public'));
+//invoke bodyparser function
 app.use(bodyParser.json());
 //invoke error handling middleware function
 app.use((err, req, res, next) => {

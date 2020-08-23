@@ -3,7 +3,9 @@ const express = require('express');
 const app = express();
 //import morgan for logging
 const morgan = require('morgan');
+//import bodyParser
 const bodyParser = require('body-parser');
+//import uuid (not used atm)
 const uuid = require('uuid');
 //import mongoose
 const mongoose = require('mongoose');
@@ -50,7 +52,7 @@ app.get('/movies/:title', (req, res) => {
       });
 });
 
-//GET data about movie genre to user                                 
+//GET data about specific movie genre by name                              
 app.get('/movies/genres/:name', (req, res) => {
     Movies.findOne({ 'Genre.Name': req.params.name })
       .then((movie) => {
@@ -67,7 +69,7 @@ app.get('/movies/genres/:name', (req, res) => {
       });
 });
 
-//GET data about movie director to user                                
+//GET data about specific director by name                                
 app.get('/movies/directors/:name', (req, res) => {
     Movies.findOne({ 'Director.Name': req.params.name })
       .then((movies) => {

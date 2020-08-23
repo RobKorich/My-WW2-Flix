@@ -163,7 +163,7 @@ app.put('/users/:Username', (req, res) => {
 });
 
 //POST movie to user's favorites list array
-app.post('/users/:Username/Movies/:MovieID', (req, res) => {
+app.post('/users/:Username/addFavorite/:MovieID', (req, res) => {
     Users.findOneAndUpdate({ Username: req.params.Username }, {
        $push: { Favorites: req.params.MovieID }
      },
@@ -179,7 +179,7 @@ app.post('/users/:Username/Movies/:MovieID', (req, res) => {
 });
 
 //REMOVE movie from user's favorite's list array
-app.post('/users/:Username/Movies/:MovieID/unfavorite', (req, res) => {
+app.post('/users/:Username/removeFavorite/:MovieID', (req, res) => {
     Users.findOneAndUpdate({ Username: req.params.Username }, {
        $pull: { Favorites: req.params.MovieID }
      },

@@ -1,6 +1,6 @@
-const passport = require('passport'),
+const passport = require('passport'), //import passport
     LocalStrategy = require('passport-local').Strategy,
-    Models = require('./models.js'),
+    Models = require('./models.js'), //Local model.js file
     passportJWT = require('passport-jwt');
 
 let Users = Models.User,

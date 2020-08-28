@@ -12,7 +12,9 @@ const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
+//import passport
 const passport = require('passport');
+//Local passport file
 require('./passport');
 
 //connect mongoose to the database

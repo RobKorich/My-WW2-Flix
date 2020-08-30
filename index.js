@@ -265,7 +265,7 @@ app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), (
 });
 
 //Express GET returns text response at endpoint '/'
-app.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.get('/', (req, res) => {
     res.send('Welcome to My WW2 Flix!');
 });
 

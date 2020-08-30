@@ -134,7 +134,7 @@ app.post('/users',
       return res.status(422).json({ errors: errors.array() });
     }
 
-    let hashedPassword = Users.hashedPassword(req.body.Password); //Hash any password entered by the user when registering before storing it in the MongoDB database
+    let hashedPassword = Users.hashPassword(req.body.Password); //Hash any password entered by the user when registering before storing it in the MongoDB database
     Users.findOne({ Username: req.body.Username })
       .then((user) => {
         if (user) {

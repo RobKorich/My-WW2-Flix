@@ -119,7 +119,12 @@ app.get('/movies/directors/:name', passport.authenticate('jwt', {session: false}
 });
 
 //POST new user account
-app.post('/users', 
+app.post('/users',
+  // Validation logic here for request
+  //you can either use a chain of methods like .not().isEmpty()
+  //which means "opposite of isEmpty" in plain english "is not empty"
+  //or use .isLength({min: 5}) which means
+  //minimum value of 5 characters are only allowed
   [
     check('Username', 'Username is required').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
@@ -127,31 +132,32 @@ app.post('/users',
     check('Email', 'Email does not appear to be valid').isEmail()
   ], (req, res) => {
 
-  //check the validation object for errors
+  // check the validation object for errors
     let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
 
-    let hashedPassword = Users.hashPassword(req.body.Password); //Hash any password entered by the user when registering before storing it in the MongoDB database
-    Users.findOne({ Username: req.body.Username })
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
-          return res.status(400).send(req.body.Username + 'already exists');
+          //If the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Username + ' already exists');
         } else {
           Users
             .create({
               Username: req.body.Username,
-              Password: hashedPassword, //hashed password
+              Password: hashedPassword,
               Email: req.body.Email,
               Birthday: req.body.Birthday
             })
-            .then((user) =>{res.status(201).json(user) })
+            .then((user) => { res.status(201).json(user) })
             .catch((error) => {
-            console.error(error);
-            res.status(500).send('Error: ' + error);
-          })
+              console.error(error);
+              res.status(500).send('Error: ' + error);
+            });
         }
       })
       .catch((error) => {

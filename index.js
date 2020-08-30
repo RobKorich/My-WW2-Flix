@@ -39,8 +39,8 @@ app.use(cors({
 //connect mongoose to the database (local)
 //mongoose.connect('mongodb://localhost:27017/[myWW2FlixDB]', { useNewUrlParser: true, useUnifiedTopology: true });
 
-//connec mongoose to the database (Atlas)
-mongoose.connect('process.env.CONNECTION_URI', { useNewUrlParser: true, useUnifiedTopology: true });
+//connect mongoose to the database (Atlas)
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //invoke morgan logging middleware function
 app.use(morgan('common'));
